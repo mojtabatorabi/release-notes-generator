@@ -3,11 +3,12 @@ name: Create Release
 on:
   push:
     tags:
+      
      - 'v*'  # This will trigger the release process for tags that start with 'v', like 'v1.0.0'
 
     branches: [ "main" ]
 
-  workflow_dispatch:
+  #workflow_dispatch:
  # push:
    # tags:
     #  - 'v*'  # This will trigger the release process for tags that start with 'v', like 'v1.0.0'
