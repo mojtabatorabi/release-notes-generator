@@ -30,7 +30,7 @@ jobs:
     - name: Upload release assets
       uses: softprops/action-gh-release@v1
       with:
-        files: "dist/*"  # Adjust based on your build output
+        files: "dist/*"  ## Adjust based on your build output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
