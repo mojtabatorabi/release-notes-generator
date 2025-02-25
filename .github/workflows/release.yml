@@ -42,6 +42,7 @@ jobs:
       
       with:
         tag_name: ${{github.run_number}}
+        release_name: Release ${{github.run_number}}
         files: "dist/*"  ## Adjust based on your build output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,5 +51,5 @@ jobs:
       run: |
         curl -X POST \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -d '{"tag_name": "'$GITHUB_REF'", "name": "'$GITHUB_REF'", "body": "Release notes", "draft": false, "prerelease": false}' \
+          -d '{"release_name": "'$GITHUB_REF'", "name": "'$GITHUB_REF'", "body": "Release notes", "draft": false, "prerelease": false}' \
           https://api.github.com/repos/${{ github.repository }}/releases
