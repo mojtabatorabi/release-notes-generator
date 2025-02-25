@@ -41,7 +41,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       
       with:
-        tag_name: "v12"
+        tag_name: ${{github.run_number}}
         files: "dist/*"  ## Adjust based on your build output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
