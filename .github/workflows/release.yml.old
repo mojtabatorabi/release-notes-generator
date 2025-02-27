@@ -6,7 +6,7 @@ on:
       
      - 'v*'  ## This will trigger the release process for tags that start with 'v', like 'v1.0.0'
 
-    branches: [ "master" ]
+    branches: [ "main" ]
 
   workflow_dispatch:
  # #push:
