@@ -1,0 +1,56 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      
+     - 'v*'  ## This will trigger the release process for tags that start with 'v', like 'v1.0.0'
+
+    branches: [ "main" ]
+
+  workflow_dispatch:
+ # #push:
+   # tags:
+    #  - 'v*'  # This will trigger the release process for tags that start with 'v', like 'v1.0.0'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'  # Adjust for your project needs
+
+    #- name: Install dependencies
+     # run: |
+       # pip install -r requirements.txt
+
+    - name: Create Release
+      run: |
+        git config user.email github-actions[bot]@users.noreply.github.com
+        git config user.name github-actions[bot]
+        git tag -a $GITHUB_REF -m "Release $GITHUB_REF"
+        git push origin master
+      
+    - name: Upload release assets
+      uses: softprops/action-gh-release@v1
+      
+      with:
+        tag_name: ${{github.run_number}}
+        release_name: Release ${{github.run_number}}
+        files: "dist/*"  ## Adjust based on your build output
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Publish release on GitHub
+      
+      run: |
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -d '{"release_name": "Release ${{github.run_number}}", "name": "'$GITHUB_REF'", "body": "Release notes", "draft": false, "prerelease": false}' \
+          https://api.github.com/repos/${{ github.repository }}/releases

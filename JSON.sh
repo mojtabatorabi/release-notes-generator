@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Source is from the great https://github.com/dominictarr/JSON.sh
+###### Source is from the great https://github.com/dominictarr/JSON.sh
 
 throw() {
   echo "$*" >&2
