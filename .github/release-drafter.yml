@@ -7,7 +7,7 @@ template: |
   ## What's Changed
   $CHANGES
 
-# #Categories for grouping changes
+# ##Categories for grouping changes
 categories:
   - title: '✨ Features'
     labels:
