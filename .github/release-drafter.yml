@@ -2,7 +2,7 @@
 name-template: '🚀 Release $NEXT_PATCH_VERSION'
 tag-template: 'v$NEXT_PATCH_VERSION'
 
-## Release body template (This is required)
+## #Release body template (This is required)
 template: |
   ## What's Changed
   $CHANGES
